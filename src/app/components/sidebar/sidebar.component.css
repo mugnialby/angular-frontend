@@ -1,0 +1,15 @@
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #f8f9fa;
+    padding: 10px;
+    transition: width 0.3s ease;
+  }
+  
+  .collapsed {
+    width: 0px;
+  }
+  
+  .toggle-btn {
+    margin-bottom: 10px;
+  }
