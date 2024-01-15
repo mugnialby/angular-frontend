@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { UserAddRequest } from '../../../../../models/dto/users/UserAddRequest';
+import { UserAddRequest } from '../../../../../models/dto/master/users/UserAddRequest';
 
 @Component({
   selector: 'app-user-grid',

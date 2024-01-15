@@ -9,4 +9,5 @@ export const routes: Routes = [
     { path: 'master/users/form', component: UserFormComponent},
     { path: 'master/roles', component: RoleGridComponent},
     { path: 'master/roles/form', component: RoleFormComponent},
+    { path: 'master/roles/form/:id', component: RoleFormComponent},
 ];

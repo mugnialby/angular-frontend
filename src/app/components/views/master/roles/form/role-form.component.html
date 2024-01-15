@@ -1,16 +1,54 @@
 <form>
-    <div class="form-group">
-      <label for="exampleFormControlInput1">Email address</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  <div class="form-group">
+    <label for="roleName">Nama Role</label>
+    <input
+      type="text"
+      class="form-control text-uppercase"
+      id="roleName"
+      name="roleName"
+      [(ngModel)]="role.roleName">
+  </div>
+  <div class="form-group">
+    <div class="col-12">
+      <label 
+        for="status"
+        [hidden]="!isUpdateMode">
+        Status
+      </label>
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Example select</label>
-      <select class="form-control" id="exampleFormControlSelect1">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
+    <div class="col-6">
+      <div class="row">
+        <div 
+          class="col-6"
+          [hidden]="!isUpdateMode">
+          {{ role.status ? "Aktif" : "Nonaktif" }}
+        </div>
+        <div class="col-6">
+          <button 
+            id="status"
+            type="button"
+            [hidden]="!isUpdateMode"
+            [class]="'btn btn-sm m-1 ' + (role.status ? 'btn-danger' : 'btn-success')"
+            (click)="setStatus()">
+            {{ role.status ? "Nonaktif" : "Aktif" }}
+          </button>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
+  <div class="float-end">
+    <button 
+      type="button"
+      class="btn btn-sm btn-primary m-1"
+      (click)="isUpdateMode ? onUpdate() : onSave()">
+      {{ isUpdateMode ? "Ubah" : "Simpan" }}
+    </button>
+    <button 
+      type="button"
+      class="btn btn-sm btn-danger m-1"
+      routerLink="/master/roles" 
+      routerLinkActive="active">
+      Batal
+    </button>
+  </div>
+</form>

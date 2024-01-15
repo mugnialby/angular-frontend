@@ -1,21 +1,98 @@
-<button type="button" class="btn btn-sm btn-secondary mb-1">Add</button>
-<table class="table table-light">
-    <thead>
-      <tr>
-        <th scope="col">Username</th>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Manager Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Otto</td>
-        <td>Otto</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="card">
+  <div class="card-body">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-6 align-items-center">
+          <label for="roleName">Nama Role</label>
+          <input
+            type="text"
+            class="form-control text-uppercase"
+            id="roleName"
+            name="roleName"
+            placeholder="-- Masukan Nama Role --"
+            [(ngModel)]="roleSearch.roleName">
+        </div>
+        <div class="col-6 align-items-center">
+          <label for="status">Status</label>
+          <select 
+            class="form-select" >
+            <option selected>-- Pilih Status --</option>
+            <option *ngFor="let status of getStatusValues()" [ngValue]="status">{{ status }}</option>
+          </select>
+        </div>
+      </div>
+
+      <button 
+        type="button" 
+        routerLink="/master/roles/form" 
+        routerLinkActive="active" 
+        class="btn btn-primary mb-3 mt-2 float-end">
+        <i class="fas fa-plus"></i>
+          Tambah
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-primary mr-2 mb-3 mt-2 float-end"
+        (click)="getData()">
+        <i class="fas fa-search"></i>
+          Cari
+      </button>
+
+      <table class="table table-sm table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">
+              Aksi
+            </th>
+            <th scope="col" class="text-center">
+              Nama Role
+            </th>
+            <th scope="col" class="text-center">
+              Status
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let role of roles; index as i; trackBy: trackByFunction">
+            <td class="text-center">
+              <a 
+                type="button"
+                class="btn btn-sm btn-warning m-1"
+                [routerLink]="['/master/roles/form/', role.id]">
+                Ubah
+              </a>
+    
+              <button 
+                type="button"
+                (click)="onDelete(role.id)"
+                class="btn btn-sm btn-danger m-1">
+                  Hapus
+              </button>
+            </td>
+            <td class="text-center">
+              {{ role.roleName }}
+            </td>
+            <td class="text-center">
+                <span *ngIf="role.status === true">Aktif</span>
+                <span *ngIf="role.status === false">Tidak Aktif</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card-footer clearfix">
+      <ul class="pagination pagination-sm m-0 float-right">
+        <li class="page-item">
+          <a class="page-link" href="#">&laquo;</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">&raquo;</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
